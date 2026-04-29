@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kehinde John Launch Reward</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <!-- Calendly External Widget Script -->
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        /* Custom scrollbar for calendly container if needed */
+        .scrollable-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        /* Artistic Wavy Background Animations */
+        .wavy-bg-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .wavy-bg {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"><path d="M0 300 Q 200 150 400 300 T 800 300 L 800 600 L 0 600 Z" fill="rgba(255,255,255,0.03)"/></svg>') repeat-x;
+            background-size: 50% 100%;
+            animation: wave-animation 15s linear infinite;
+        }
+        .wavy-bg-2 {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"><path d="M0 400 Q 200 550 400 400 T 800 400 L 800 600 L 0 600 Z" fill="rgba(20, 184, 166, 0.05)"/></svg>') repeat-x;
+            background-size: 50% 100%;
+            animation: wave-animation 20s linear infinite reverse;
+        }
+        .wavy-bg-3 {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2" d="M0 200 Q 200 50 400 200 T 800 200"/></svg>') repeat-x;
+            background-size: 50% 100%;
+            animation: wave-animation 12s linear infinite;
+        }
+        @keyframes wave-animation {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900 flex flex-col items-center justify-center p-4 font-sans text-slate-800 relative overflow-hidden">
+
+    <!-- Artistic Wavy Background -->
+    <div class="wavy-bg-container">
+        <div class="wavy-bg-3"></div>
+        <div class="wavy-bg"></div>
+        <div class="wavy-bg-2"></div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transition-all duration-500 transform relative flex flex-col z-10" style="max-height: 90vh;">
+        
+        <!-- Header Progress -->
+        <div class="bg-slate-50 px-8 py-6 border-b border-slate-100 flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-2 text-blue-900 font-bold text-lg sm:text-xl">
+                <i data-lucide="gift" class="w-6 h-6 text-teal-500"></i>
+                <span>Kehinde John Launch Reward</span>
+            </div>
+            <div id="step-indicator" class="text-sm font-medium text-slate-400">
+                Step 1 of 3
+            </div>
+        </div>
+
+        <div class="p-8 overflow-y-auto scrollable-content flex-1">
+            
+            <!-- STEP 1: Name and Email -->
+            <div id="step1" class="fade-in block">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Thank you for your support! 🎉</h2>
+                <p class="text-slate-500 mb-8">To show my appreciation for helping with the launch, please drop your details below to claim your gift.</p>
+                
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Your Full Name</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-lucide="user" class="h-5 w-5 text-slate-400"></i>
+                            </div>
+                            <input
+                                type="text"
+                                id="nameInput"
+                                placeholder="e.g. John Doe"
+                                class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all outline-none"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Your Email Address</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-lucide="mail" class="h-5 w-5 text-slate-400"></i>
+                            </div>
+                            <input
+                                type="email"
+                                id="emailInput"
+                                placeholder="you@example.com"
+                                class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all outline-none"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    id="btnStep1"
+                    disabled
+                    onclick="goToStep(2)"
+                    class="mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-slate-100 text-slate-400 cursor-not-allowed"
+                >
+                    Continue <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Choose Gift -->
+            <div id="step2" class="fade-in hidden">
+                <button onclick="goToStep(1)" class="text-slate-400 hover:text-slate-600 mb-4 flex items-center gap-1 text-sm font-medium transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Back
+                </button>
+                
+                <h2 id="greeting-name" class="text-2xl font-bold text-slate-800 mb-2">Choose your gift</h2>
+                <p class="text-slate-500 mb-8">Select the resource that will best help you on your journey.</p>
+                
+                <div class="space-y-4">
+                    <!-- Option 1: Book -->
+                    <div 
+                        id="optionBook"
+                        onclick="selectChoice('book')"
+                        class="relative p-5 border-2 border-slate-100 hover:border-slate-300 hover:bg-slate-50 rounded-2xl cursor-pointer transition-all duration-200 flex items-start gap-4"
+                    >
+                        <div id="iconBookContainer" class="p-3 rounded-full bg-slate-100 text-slate-500 transition-colors">
+                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 id="titleBook" class="font-bold text-lg text-slate-700 transition-colors">My Premium Book</h3>
+                            <p class="text-sm text-slate-500 mt-1">Get instant access to my exact strategies to attract clients and grow your income. <span class="block mt-1 italic text-teal-600 font-medium text-xs">A small commitment fee applies to ensure seriousness.</span></p>
+                        </div>
+                        <i data-lucide="check-circle" id="checkBook" class="absolute top-5 right-5 w-6 h-6 text-teal-500 hidden"></i>
+                    </div>
+
+                    <!-- Option 2: Consult -->
+                    <div 
+                        id="optionConsult"
+                        onclick="selectChoice('consult')"
+                        class="relative p-5 border-2 border-slate-100 hover:border-slate-300 hover:bg-slate-50 rounded-2xl cursor-pointer transition-all duration-200 flex items-start gap-4"
+                    >
+                        <div id="iconConsultContainer" class="p-3 rounded-full bg-slate-100 text-slate-500 transition-colors">
+                            <i data-lucide="calendar" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <h3 id="titleConsult" class="font-bold text-lg text-slate-700 transition-colors">10-Min Consultation</h3>
+                                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full animate-pulse shrink-0">Only 10 Slots!</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mt-1">A personalized business or career strategy session directly with me.</p>
+                        </div>
+                        <i data-lucide="check-circle" id="checkConsult" class="absolute top-5 right-5 w-6 h-6 text-blue-500 hidden"></i>
+                    </div>
+                </div>
+
+                <button
+                    id="btnStep2"
+                    disabled
+                    onclick="goToStep(3)"
+                    class="mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-slate-100 text-slate-400 cursor-not-allowed"
+                >
+                    Claim My Gift <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- STEP 3: Final Delivery -->
+            <div id="step3" class="fade-in hidden text-center py-2">
+                
+                <!-- Book Outcome -->
+                <div id="outcomeBook" class="hidden">
+                    <div class="w-20 h-20 bg-teal-100 text-teal-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="book-open" class="w-10 h-10"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-800 mb-4">You're All Set!</h2>
+                    <p class="text-slate-600 mb-6 text-lg">
+                        Click the button below to head over to Selar to claim your book.
+                    </p>
+                    <div class="bg-teal-50 border border-teal-200 text-teal-800 px-4 py-3 rounded-lg mb-8 text-sm text-left">
+                        <strong>Quick Note:</strong> A small commitment fee is required on the next page. This filters out freebie-seekers and ensures I'm giving this valuable resource only to those who are serious about implementing the strategies.
+                    </div>
+                    <a 
+                        href="https://selar.com/anomaly" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="block w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-teal-500/30 transition-all text-lg mb-6"
+                    >
+                        Get My Book on Selar
+                    </a>
+                </div>
+
+                <!-- Consult Outcome (Calendly Embed) -->
+                <div id="outcomeConsult" class="hidden">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Let's Talk Strategy</h2>
+                    <p class="text-slate-600 mb-4 text-sm">
+                        Please pick a time that works best for you below.
+                    </p>
+                    
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget rounded-xl border border-slate-200 overflow-hidden" data-url="https://calendly.com/ogungbadekehinde19/30min" style="min-width:320px;height:550px;"></div>
+                    <!-- Calendly inline widget end -->
+                    
+                    <p class="mt-4 text-xs text-red-600 font-medium">Limited availability - First come, first served.</p>
+                </div>
+                
+                <button 
+                    onclick="resetForm()"
+                    class="mt-6 text-slate-400 hover:text-slate-600 font-medium underline text-sm"
+                >
+                    Start Over
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Copyright Footer -->
+    <div class="mt-8 text-center text-slate-300 text-sm z-10 font-medium tracking-wide">
+        &copy; 2026 Ogungbade Kehinde John. All rights reserved.
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Fire initial confetti
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#14b8a6', '#3b82f6', '#ffffff']
+                });
+            }, 500); // Slight delay for better effect on load
+        });
+
+        // State variables
+        let currentStep = 1;
+        let selectedChoice = '';
+
+        // DOM Elements
+        const nameInput = document.getElementById('nameInput');
+        const emailInput = document.getElementById('emailInput');
+        const btnStep1 = document.getElementById('btnStep1');
+        const btnStep2 = document.getElementById('btnStep2');
+        const stepIndicator = document.getElementById('step-indicator');
+        
+        // Input validation listeners
+        nameInput.addEventListener('input', validateStep1);
+        emailInput.addEventListener('input', validateStep1);
+
+        function validateStep1() {
+            const nameValid = nameInput.value.trim() !== '';
+            const emailValid = emailInput.value.includes('@') && emailInput.value.includes('.');
+            
+            if (nameValid && emailValid) {
+                btnStep1.disabled = false;
+                btnStep1.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-600/30";
+            } else {
+                btnStep1.disabled = true;
+                btnStep1.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-slate-100 text-slate-400 cursor-not-allowed";
+            }
+        }
+
+        function selectChoice(choice) {
+            selectedChoice = choice;
+            
+            // Reset both options visually
+            const optionBook = document.getElementById('optionBook');
+            const optionConsult = document.getElementById('optionConsult');
+            
+            // Reset Book
+            optionBook.className = "relative p-5 border-2 rounded-2xl cursor-pointer transition-all duration-200 flex items-start gap-4 border-slate-100 hover:border-slate-300 hover:bg-slate-50";
+            document.getElementById('iconBookContainer').className = "p-3 rounded-full bg-slate-100 text-slate-500 transition-colors";
+            document.getElementById('titleBook').className = "font-bold text-lg text-slate-700 transition-colors";
+            document.getElementById('checkBook').classList.add('hidden');
+            
+            // Reset Consult
+            optionConsult.className = "relative p-5 border-2 rounded-2xl cursor-pointer transition-all duration-200 flex items-start gap-4 border-slate-100 hover:border-slate-300 hover:bg-slate-50";
+            document.getElementById('iconConsultContainer').className = "p-3 rounded-full bg-slate-100 text-slate-500 transition-colors";
+            document.getElementById('titleConsult').className = "font-bold text-lg text-slate-700 transition-colors";
+            document.getElementById('checkConsult').classList.add('hidden');
+
+            // Apply active styles
+            if (choice === 'book') {
+                optionBook.className = "relative p-5 border-2 rounded-2xl cursor-pointer transition-all duration-200 flex items-start gap-4 border-teal-500 bg-teal-50/50";
+                document.getElementById('iconBookContainer').className = "p-3 rounded-full bg-teal-100 text-teal-600 transition-colors";
+                document.getElementById('titleBook').className = "font-bold text-lg text-teal-900 transition-colors";
+                document.getElementById('checkBook').classList.remove('hidden');
+            } else {
+                optionConsult.className = "relative p-5 border-2 rounded-2xl cursor-pointer transition-all duration-200 flex items-start gap-4 border-blue-500 bg-blue-50/50";
+                document.getElementById('iconConsultContainer').className = "p-3 rounded-full bg-blue-100 text-blue-600 transition-colors";
+                document.getElementById('titleConsult').className = "font-bold text-lg text-blue-900 transition-colors";
+                document.getElementById('checkConsult').classList.remove('hidden');
+            }
+
+            // Enable Step 2 button
+            btnStep2.disabled = false;
+            btnStep2.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-600/30";
+        }
+
+        function goToStep(step) {
+            // Hide all steps
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step1').classList.remove('block');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step2').classList.remove('block');
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step3').classList.remove('block');
+
+            // Show target step
+            const targetStep = document.getElementById(`step${step}`);
+            targetStep.classList.remove('hidden');
+            targetStep.classList.add('block');
+            
+            // Re-trigger animation
+            targetStep.classList.remove('fade-in');
+            void targetStep.offsetWidth; // trigger reflow
+            targetStep.classList.add('fade-in');
+
+            stepIndicator.innerText = `Step ${step} of 3`;
+            currentStep = step;
+
+            // Step specific logic
+            if (step === 2) {
+                const firstName = nameInput.value.split(' ')[0] || '';
+                document.getElementById('greeting-name').innerText = `Choose your gift, ${firstName}`;
+            }
+
+            if (step === 3) {
+                // Fire celebratory confetti on final step
+                confetti({
+                    particleCount: 150,
+                    spread: 80,
+                    origin: { y: 0.5 },
+                    colors: ['#14b8a6', '#3b82f6', '#fcd34d']
+                });
+
+                if (selectedChoice === 'book') {
+                    document.getElementById('outcomeBook').classList.remove('hidden');
+                    document.getElementById('outcomeConsult').classList.add('hidden');
+                } else {
+                    document.getElementById('outcomeBook').classList.add('hidden');
+                    document.getElementById('outcomeConsult').classList.remove('hidden');
+                }
+            }
+        }
+
+        function resetForm() {
+            nameInput.value = '';
+            emailInput.value = '';
+            selectedChoice = '';
+            validateStep1();
+            
+            // Reset UI for step 2 choices manually to initial state
+            const optionBook = document.getElementById('optionBook');
+            const optionConsult = document.getElementById('optionConsult');
+            optionBook.className = "relative p-5 border-2 rounded-2xl cursor-pointer transition-all duration-200 flex items-start gap-4 border-slate-100 hover:border-slate-300 hover:bg-slate-50";
+            document.getElementById('iconBookContainer').className = "p-3 rounded-full bg-slate-100 text-slate-500 transition-colors";
+            document.getElementById('titleBook').className = "font-bold text-lg text-slate-700 transition-colors";
+            document.getElementById('checkBook').classList.add('hidden');
+            
+            optionConsult.className = "relative p-5 border-2 rounded-2xl cursor-pointer transition-all duration-200 flex items-start gap-4 border-slate-100 hover:border-slate-300 hover:bg-slate-50";
+            document.getElementById('iconConsultContainer').className = "p-3 rounded-full bg-slate-100 text-slate-500 transition-colors";
+            document.getElementById('titleConsult').className = "font-bold text-lg text-slate-700 transition-colors";
+            document.getElementById('checkConsult').classList.add('hidden');
+            
+            btnStep2.disabled = true;
+            btnStep2.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-slate-100 text-slate-400 cursor-not-allowed";
+
+            goToStep(1);
+        }
+    </script>
+</body>
+</html>
