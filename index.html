@@ -74,6 +74,14 @@
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900 flex flex-col items-center justify-center p-4 font-sans text-slate-800 relative overflow-hidden">
 
+    <!-- Audio Element & Control -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    </audio>
+    <button id="audioToggle" onclick="toggleAudio()" class="fixed bottom-6 right-6 z-50 bg-white/10 backdrop-blur-md p-3 rounded-full shadow-lg border border-white/20 text-white hover:bg-white/20 transition-all group">
+        <i data-lucide="volume-x" id="audioIcon" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+    </button>
+
     <!-- Artistic Wavy Background -->
     <div class="wavy-bg-container">
         <div class="wavy-bg-3"></div>
@@ -259,6 +267,31 @@
         // Initialize Icons
         lucide.createIcons();
 
+        // --- Audio Control Logic ---
+        let isPlaying = false;
+        const bgMusic = document.getElementById('bgMusic');
+        const audioIcon = document.getElementById('audioIcon');
+        bgMusic.volume = 0.2; // Soft volume
+
+        window.toggleAudio = function() {
+            if (isPlaying) {
+                bgMusic.pause();
+                audioIcon.setAttribute('data-lucide', 'volume-x');
+            } else {
+                bgMusic.play().catch(e => console.log("Audio play failed:", e));
+                audioIcon.setAttribute('data-lucide', 'volume-2');
+            }
+            lucide.createIcons();
+            isPlaying = !isPlaying;
+        };
+
+        // Auto-play attempt on first click anywhere
+        document.body.addEventListener('click', function initAudio() {
+            if (!isPlaying) toggleAudio();
+            document.body.removeEventListener('click', initAudio);
+        }, { once: true });
+        // --------------------------
+
         // Fire initial confetti
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -298,8 +331,11 @@
                 btnStep1.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-slate-100 text-slate-400 cursor-not-allowed";
             }
         }
+        
+        // Expose functions globally for the HTML onclick attributes
+        window.validateStep1 = validateStep1;
 
-        function selectChoice(choice) {
+        window.selectChoice = function(choice) {
             selectedChoice = choice;
             
             // Reset both options visually
@@ -336,7 +372,43 @@
             btnStep2.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-600/30";
         }
 
-        function goToStep(step) {
+        window.goToStep = async function(step) {
+            // Handle Formspree Submission when moving from Step 2 to Step 3
+            if (step === 3 && currentStep === 2) {
+                const originalText = btnStep2.innerHTML;
+                btnStep2.innerHTML = 'Saving your choice...';
+                btnStep2.disabled = true;
+
+                // --- FORMSPREE INTEGRATION ---
+                // IMPORTANT: Replace 'YOUR_FORMSPREE_ID' with your actual Formspree endpoint ID (e.g. 'xqkagbje')
+                const FORMSPREE_ID = "myklrqbo"; 
+                const formspreeUrl = `https://formspree.io/f/${FORMSPREE_ID}`;
+
+                if (FORMSPREE_ID !== "YOUR_FORMSPREE_ID") {
+                    try {
+                        await fetch(formspreeUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                name: nameInput.value.trim(),
+                                email: emailInput.value.trim(),
+                                gift_choice: selectedChoice === 'book' ? 'Premium Book' : '10-Min Consult'
+                            })
+                        });
+                    } catch (e) {
+                        console.error("Error saving lead to Formspree:", e);
+                    }
+                } else {
+                    console.warn("Please replace YOUR_FORMSPREE_ID in the code to enable Formspree.");
+                }
+
+                btnStep2.innerHTML = originalText;
+                btnStep2.disabled = false;
+            }
+
             // Hide all steps
             document.getElementById('step1').classList.add('hidden');
             document.getElementById('step1').classList.remove('block');
@@ -383,7 +455,7 @@
             }
         }
 
-        function resetForm() {
+        window.resetForm = function() {
             nameInput.value = '';
             emailInput.value = '';
             selectedChoice = '';
