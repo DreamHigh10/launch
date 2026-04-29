@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kehinde John Launch Reward</title>
     
+    <!-- Gift Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -78,7 +81,7 @@
     <audio id="bgMusic" loop preload="auto">
         <source src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
     </audio>
-    <button id="audioToggle" onclick="toggleAudio()" class="fixed bottom-6 right-6 z-50 bg-white/10 backdrop-blur-md p-3 rounded-full shadow-lg border border-white/20 text-white hover:bg-white/20 transition-all group">
+    <button id="audioToggle" onclick="toggleAudio()" class="fixed bottom-6 right-6 z-50 bg-white/10 backdrop-blur-md p-3 rounded-full shadow-lg border border-white/20 text-white hover:bg-white/20 transition-all group focus:outline-none focus:ring-2 focus:ring-white/50">
         <i data-lucide="volume-x" id="audioIcon" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
     </button>
 
@@ -146,7 +149,7 @@
                     id="btnStep1"
                     disabled
                     onclick="goToStep(2)"
-                    class="mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-slate-100 text-slate-400 cursor-not-allowed"
+                    class="mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-slate-100 text-slate-400 cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-blue-500/30"
                 >
                     Continue <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </button>
@@ -154,7 +157,7 @@
 
             <!-- STEP 2: Choose Gift -->
             <div id="step2" class="fade-in hidden">
-                <button onclick="goToStep(1)" class="text-slate-400 hover:text-slate-600 mb-4 flex items-center gap-1 text-sm font-medium transition-colors">
+                <button onclick="goToStep(1)" class="text-slate-400 hover:text-slate-600 mb-4 flex items-center gap-1 text-sm font-medium transition-colors focus:outline-none">
                     <i data-lucide="arrow-left" class="w-4 h-4"></i> Back
                 </button>
                 
@@ -202,7 +205,7 @@
                     id="btnStep2"
                     disabled
                     onclick="goToStep(3)"
-                    class="mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-slate-100 text-slate-400 cursor-not-allowed"
+                    class="mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-slate-100 text-slate-400 cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-blue-500/30"
                 >
                     Claim My Gift <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </button>
@@ -227,7 +230,7 @@
                         href="https://selar.com/anomaly" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        class="block w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-teal-500/30 transition-all text-lg mb-6"
+                        class="block w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-teal-500/30 transition-all text-lg mb-6 focus:outline-none focus:ring-4 focus:ring-teal-500/30"
                     >
                         Get My Book on Selar
                     </a>
@@ -249,7 +252,7 @@
                 
                 <button 
                     onclick="resetForm()"
-                    class="mt-6 text-slate-400 hover:text-slate-600 font-medium underline text-sm"
+                    class="mt-6 text-slate-400 hover:text-slate-600 font-medium underline text-sm focus:outline-none"
                 >
                     Start Over
                 </button>
@@ -319,13 +322,25 @@
         nameInput.addEventListener('input', validateStep1);
         emailInput.addEventListener('input', validateStep1);
 
+        // Smooth UX feature: Press Enter to continue
+        emailInput.addEventListener('keydown', function(event) {
+            if (event.key === "Enter" && !btnStep1.disabled) {
+                goToStep(2);
+            }
+        });
+        nameInput.addEventListener('keydown', function(event) {
+            if (event.key === "Enter") {
+                emailInput.focus();
+            }
+        });
+
         function validateStep1() {
             const nameValid = nameInput.value.trim() !== '';
             const emailValid = emailInput.value.includes('@') && emailInput.value.includes('.');
             
             if (nameValid && emailValid) {
                 btnStep1.disabled = false;
-                btnStep1.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-600/30";
+                btnStep1.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-600/30 focus:outline-none focus:ring-4 focus:ring-blue-500/30";
             } else {
                 btnStep1.disabled = true;
                 btnStep1.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-slate-100 text-slate-400 cursor-not-allowed";
@@ -369,7 +384,7 @@
 
             // Enable Step 2 button
             btnStep2.disabled = false;
-            btnStep2.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-600/30";
+            btnStep2.className = "mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-600/30 focus:outline-none focus:ring-4 focus:ring-blue-500/30";
         }
 
         window.goToStep = async function(step) {
